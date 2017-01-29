@@ -1,0 +1,26 @@
+<div class="container">
+   <div *ngIf="!isAdminLoginMode">
+      <div>Enter your name to start scoring</div>
+      <div>
+         <md-input-container [floatingPlaceholder]="false">
+            <input md-input placeholder="Name" [(ngModel)]="username">
+         </md-input-container>
+         <i (click)="login()" class="material-icons">navigate_next</i>
+      </div>
+   </div>
+   <div *ngIf="isAdminLoginMode">
+      <div>Admin Login</div>
+      <div>
+         <md-input-container [floatingPlaceholder]="false">
+            <input md-input placeholder="Name" [(ngModel)]="username">
+         </md-input-container>
+      </div>
+      <div>
+         <md-input-container [floatingPlaceholder]="false">
+            <input md-input type=password placeholder="Password" [(ngModel)]="password">
+         </md-input-container>
+      </div>
+      <div><button md-raised-button color="primary" (click)="adminLogin()">Login</button></div>
+   </div>
+</div>
+<div (click)="toggleLoginMode()" class="login-toggle-link">{{ loginModeText() }}</div>

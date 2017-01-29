@@ -37,10 +37,11 @@ import { ScoreSheetComponent } from './scoresheet/scoresheet.component';
 import { HttpService } from './shared/service/http.service';
 import { UriGenerator } from './shared/service/urigenerator';
 import { ScoreSheetService } from './shared/service/scoresheet.service';
-import { userReducer } from './shared/reducer/user.reducer';
-import { eventReducer } from './shared/reducer/event.reducer';
+import { user } from './shared/reducer/user.reducer';
+import { event } from './shared/reducer/event.reducer';
 import { UserService } from './shared/service/user.service';
 import { EventService } from './shared/service/event.service';
+import { LoginComponent } from './login/login.component';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -58,26 +59,27 @@ type StoreType = {
  * `AppModule` is the main entry point into Angular2's bootstraping process
  */
 @NgModule({
-  bootstrap: [ AppComponent ],
-  declarations: [
+   bootstrap: [ AppComponent ],
+   declarations: [
       AppComponent,
       AboutComponent,
       HomeComponent,
       NoContentComponent,
       XLargeDirective,
-      ScoreSheetComponent
-  ],
-  imports: [ // import Angular's modules
+      ScoreSheetComponent,
+      LoginComponent
+   ],
+   imports: [ // import Angular's modules
       BrowserModule,
       FormsModule,
       HttpModule,
       RouterModule.forRoot(ROUTES, { preloadingStrategy: PreloadAllModules }),
       StoreModule.provideStore({
-         user: userReducer,
-         event: eventReducer
+         user,
+         event
       }),
       MaterialModule.forRoot()
-  ],
+   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
       ENV_PROVIDERS,
       APP_PROVIDERS,
