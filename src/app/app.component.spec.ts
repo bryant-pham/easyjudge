@@ -1,6 +1,5 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import {
-  inject,
   async,
   TestBed,
   ComponentFixture
@@ -9,6 +8,19 @@ import {
 // Load the implementations that should be tested
 import { AppComponent } from './app.component';
 import { AppState } from './app.service';
+import { UserService } from './shared/service/user.service';
+import { ScoreSheetService } from './shared/service/scoresheet.service';
+import { EventService } from './shared/service/event.service';
+
+class MockService {
+   public load(): void {
+      // no op
+   }
+
+   public login(): void {
+      // no op
+   }
+}
 
 describe(`App`, () => {
   let comp: AppComponent;
@@ -19,7 +31,12 @@ describe(`App`, () => {
     TestBed.configureTestingModule({
       declarations: [ AppComponent ],
       schemas: [NO_ERRORS_SCHEMA],
-      providers: [AppState]
+      providers: [
+         AppState,
+         { provide: ScoreSheetService, useClass: MockService },
+         { provide: UserService, useClass: MockService },
+         { provide: EventService, useClass: MockService }
+      ]
     })
     .compileComponents(); // compile template and css
   }));
@@ -32,23 +49,9 @@ describe(`App`, () => {
     fixture.detectChanges(); // trigger initial data binding
   });
 
-  it(`should be readly initialized`, () => {
+  it(`should be readily initialized`, () => {
     expect(fixture).toBeDefined();
     expect(comp).toBeDefined();
-  });
-
-  it(`should be @AngularClass`, () => {
-    expect(comp.url).toEqual('https://twitter.com/AngularClass');
-    expect(comp.angularclassLogo).toEqual('assets/img/angularclass-avatar.png');
-    expect(comp.name).toEqual('Angular 2 Webpack Starter');
-  });
-
-  it('should log ngOnInit', () => {
-    spyOn(console, 'log');
-    expect(console.log).not.toHaveBeenCalled();
-
-    comp.ngOnInit();
-    expect(console.log).toHaveBeenCalled();
   });
 
 });

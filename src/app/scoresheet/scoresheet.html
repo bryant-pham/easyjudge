@@ -1,0 +1,18 @@
+<div *ngIf="scoreSheet">
+   <div>
+      <md-input-container>
+         <input md-input placeholder="Project Number" [(ngModel)]="scoreSheet.projectNumber">
+      </md-input-container>
+   </div>
+   <div *ngFor="let criteria of scoreSheet.criteria">
+      {{ criteria.text }}
+      <md-radio-group [(ngModel)]="criteria.score">
+         <md-radio-button [value]="1">1</md-radio-button>
+         <md-radio-button [value]="2">2</md-radio-button>
+         <md-radio-button [value]="3">3</md-radio-button>
+         <md-radio-button [value]="4">4</md-radio-button>
+         <md-radio-button [value]="5">5</md-radio-button>
+      </md-radio-group>
+   </div>
+   <button md-raised-button color="primary" (click)="submitSheet()">Submit</button>
+</div>

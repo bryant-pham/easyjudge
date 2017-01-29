@@ -14,6 +14,8 @@ import {
   RouterModule,
   PreloadAllModules
 } from '@angular/router';
+import { MaterialModule } from '@angular/material';
+import { StoreModule } from '@ngrx/store';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -31,6 +33,14 @@ import { XLargeDirective } from './home/x-large';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
+import { ScoreSheetComponent } from './scoresheet/scoresheet.component';
+import { HttpService } from './shared/service/http.service';
+import { UriGenerator } from './shared/service/urigenerator';
+import { ScoreSheetService } from './shared/service/scoresheet.service';
+import { userReducer } from './shared/reducer/user.reducer';
+import { eventReducer } from './shared/reducer/event.reducer';
+import { UserService } from './shared/service/user.service';
+import { EventService } from './shared/service/event.service';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -50,21 +60,34 @@ type StoreType = {
 @NgModule({
   bootstrap: [ AppComponent ],
   declarations: [
-    AppComponent,
-    AboutComponent,
-    HomeComponent,
-    NoContentComponent,
-    XLargeDirective
+      AppComponent,
+      AboutComponent,
+      HomeComponent,
+      NoContentComponent,
+      XLargeDirective,
+      ScoreSheetComponent
   ],
   imports: [ // import Angular's modules
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
+      BrowserModule,
+      FormsModule,
+      HttpModule,
+      RouterModule.forRoot(ROUTES, { preloadingStrategy: PreloadAllModules }),
+      StoreModule.provideStore({
+         user: userReducer,
+         event: eventReducer
+      }),
+      MaterialModule.forRoot()
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
-    ENV_PROVIDERS,
-    APP_PROVIDERS
+      ENV_PROVIDERS,
+      APP_PROVIDERS,
+      HttpService,
+      { provide: UriGenerator,
+         useFactory: () =>
+            new UriGenerator({ scheme: 'http', host: 'localhost', port: '8882', context: 'api' }) },
+      ScoreSheetService,
+      UserService,
+      EventService
   ]
 })
 export class AppModule {
