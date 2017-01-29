@@ -27,7 +27,8 @@ export class ScoreSheetComponent implements OnInit {
                this.scoreSheet.clear();
                this.snackBar.open('Score submitted successfully', null, mdSnackBarConfig);
             } else {
-               this.snackBar.open('Error submitting score. Please try again', null, mdSnackBarConfig);
+               this.snackBar.open('Error submitting score. Please try again',
+                  null, mdSnackBarConfig);
             }
          });
    }
