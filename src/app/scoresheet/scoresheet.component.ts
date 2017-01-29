@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MdSnackBar } from '@angular/material';
 
 import { ScoreSheetService } from '../shared/service/scoresheet.service';
 import { ScoreSheet } from '../shared/datamodel/scoresheet';
+import { mdSnackBarConfig } from '../shared/datamodel/snackbarconfig';
 
 @Component({
    selector: 'score-sheet',
@@ -10,7 +12,8 @@ import { ScoreSheet } from '../shared/datamodel/scoresheet';
 export class ScoreSheetComponent implements OnInit {
    public scoreSheet: ScoreSheet;
 
-   constructor(private scoreSheetService: ScoreSheetService) {}
+   constructor(private scoreSheetService: ScoreSheetService,
+               private snackBar: MdSnackBar) {}
 
    public ngOnInit(): void {
       this.scoreSheetService.createNewScoreSheet()
@@ -22,8 +25,9 @@ export class ScoreSheetComponent implements OnInit {
          .subscribe((success: boolean) => {
             if (success) {
                this.scoreSheet.clear();
+               this.snackBar.open('Score submitted successfully', null, mdSnackBarConfig);
             } else {
-               // error popup
+               this.snackBar.open('Error submitting score. Please try again', null, mdSnackBarConfig);
             }
          });
    }

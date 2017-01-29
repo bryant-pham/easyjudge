@@ -14,7 +14,7 @@ import {
   RouterModule,
   PreloadAllModules
 } from '@angular/router';
-import { MaterialModule } from '@angular/material';
+import { MaterialModule, MdSnackBar } from '@angular/material';
 import { StoreModule } from '@ngrx/store';
 
 /*
@@ -89,7 +89,8 @@ type StoreType = {
             new UriGenerator({ scheme: 'http', host: 'localhost', port: '8882', context: 'api' }) },
       ScoreSheetService,
       UserService,
-      EventService
+      EventService,
+      MdSnackBar
   ]
 })
 export class AppModule {
