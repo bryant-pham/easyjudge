@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 import { ScoreSheetService } from './shared/service/scoresheet.service';
 import { EventService } from './shared/service/event.service';
-import { UserService } from './shared/service/user.service';
 
 /*
  * App Component
@@ -27,13 +26,9 @@ import { UserService } from './shared/service/user.service';
 })
 export class AppComponent {
    constructor(scoreSheetService: ScoreSheetService,
-               eventService: EventService,
-               userService: UserService) {
+               eventService: EventService) {
       scoreSheetService.load();
       eventService.load();
-
-      // TODO: temp code - remove this
-      userService.login('john cena');
    }
 }
 

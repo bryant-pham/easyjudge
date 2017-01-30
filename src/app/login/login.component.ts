@@ -23,11 +23,13 @@ export class LoginComponent extends AbstractComponent implements OnInit {
    public ngOnInit(): void {
       this.subs.push(this.userService.getCurrentUser()
          .subscribe((user: User) => {
-            // this.router.navigate(['/score']);
+            if (user) {
+               this.router.navigate(['/score']);
+            }
          }));
       this.subs.push(this.userService.getCurrentAdmin()
          .subscribe((admin: Admin) => {
-            // this.router.navigate(['/admin'])
+            this.router.navigate(['/admin'])
          }));
    }
 

@@ -88,7 +88,7 @@ type StoreType = {
       HttpService,
       { provide: UriGenerator,
          useFactory: () =>
-            new UriGenerator({ scheme: 'http', host: 'localhost', port: '8882', context: 'api' }) },
+            new UriGenerator({ scheme: 'http', host: 'localhost', port: '8080', context: 'api' }) },
       ScoreSheetService,
       UserService,
       EventService,
