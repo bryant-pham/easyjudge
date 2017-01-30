@@ -29,7 +29,7 @@ export class LoginComponent extends AbstractComponent implements OnInit {
          }));
       this.subs.push(this.userService.getCurrentAdmin()
          .subscribe((admin: Admin) => {
-            this.router.navigate(['/admin'])
+            this.router.navigate(['/admin']);
          }));
    }
 

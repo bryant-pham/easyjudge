@@ -38,7 +38,7 @@ import { HttpService } from './shared/service/http.service';
 import { UriGenerator } from './shared/service/urigenerator';
 import { ScoreSheetService } from './shared/service/scoresheet.service';
 import { user } from './shared/reducer/user.reducer';
-import { event } from './shared/reducer/event.reducer';
+import { events } from './shared/reducer/events.reducer';
 import { UserService } from './shared/service/user.service';
 import { EventService } from './shared/service/event.service';
 import { LoginComponent } from './login/login.component';
@@ -77,7 +77,7 @@ type StoreType = {
       RouterModule.forRoot(ROUTES, { preloadingStrategy: PreloadAllModules }),
       StoreModule.provideStore({
          user,
-         event,
+         events,
          admin
       }),
       MaterialModule.forRoot()

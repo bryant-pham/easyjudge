@@ -19,13 +19,18 @@ export class EventService extends AbstractService {
    public load(): void {
       let uri = this.uriGenerator.event();
       this.http.get(uri)
-         .map((json) => new Event(json.name))
-         .map((event) => this.createAction(Actions.SET_EVENT, event))
+         .map((json) => Event.from(json))
+         .map((events) => this.createAction(Actions.SET_EVENTS, events))
          .subscribe((action) => this.store.dispatch(action));
    }
 
-   public getEvent(): Observable<Event> {
-      return this.store.select('event')
-         .skipWhile((event) => !event);
+   public getEvents(): Observable<Event[]> {
+      return this.store.select('events')
+         .skipWhile((events) => !events);
+   }
+
+   public getActiveEvent(): Observable<Event> {
+      return this.getEvents()
+         .map((events: Event[]) => events.find((event: Event) => event.isActive));
    }
 }

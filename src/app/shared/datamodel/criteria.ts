@@ -1,4 +1,12 @@
 export class Criteria {
+   public static from(json: any[]): Criteria[] {
+      let criteria = [];
+      for (let elem of json) {
+         criteria.push(new Criteria(elem.text, elem.score));
+      }
+      return criteria;
+   }
+
    public text: string;
    public score: number;
 

@@ -5,7 +5,6 @@ import {
   Component,
   ViewEncapsulation
 } from '@angular/core';
-import { ScoreSheetService } from './shared/service/scoresheet.service';
 import { EventService } from './shared/service/event.service';
 
 /*
@@ -25,9 +24,7 @@ import { EventService } from './shared/service/event.service';
   `
 })
 export class AppComponent {
-   constructor(scoreSheetService: ScoreSheetService,
-               eventService: EventService) {
-      scoreSheetService.load();
+   constructor(eventService: EventService) {
       eventService.load();
    }
 }
