@@ -1,15 +1,15 @@
 import { Criteria } from './criteria';
 
 export class ScoreSheet {
-   public eventName: string;
+   public eventid: string;
    public criteria: Criteria[];
    public judgeName: string;
    public projectNumber: string;
 
-   constructor(eventName: string, criterion: Criteria[],
+   constructor(eventid: string, criteria: Criteria[],
                judgeName: string, projectNumber?: string) {
-      this.eventName = eventName;
-      this.criteria = criterion;
+      this.eventid = eventid;
+      this.criteria = criteria;
       this.judgeName = judgeName;
       this.projectNumber = projectNumber;
    }
