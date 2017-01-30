@@ -4,9 +4,10 @@ import { Observable } from 'rxjs';
 
 import { HttpService } from './http.service';
 import { UriGenerator } from './urigenerator';
-import { User } from '../datamodel/user';
+import { Admin } from '../datamodel/admin';
 import { Actions } from '../reducer/actions';
 import { AbstractService } from './abstract.service';
+import { User } from '../datamodel/user';
 
 @Injectable()
 export class UserService extends AbstractService {
@@ -16,10 +17,18 @@ export class UserService extends AbstractService {
       super();
    }
 
-   public login(username: string, password?: string): void {
+   public login(username: string): void {
       let uri = this.uriGenerator.login();
-      this.http.post(uri, new User(username, null, password))
-         .map((json) => new User(json.username, json.isAdmin))
+      this.http.post(uri, new User(username))
+         .map((json) => new User(json.username))
+         .map((user) => this.createAction(Actions.SET_USER, user))
+         .subscribe((action) => this.store.dispatch(action));
+   }
+
+   public adminLogin(username: string, password: string): void {
+      let uri = this.uriGenerator.adminLogin();
+      this.http.post(uri, new Admin(username, password))
+         .map((json) => new Admin(json.username))
          .map((user) => this.createAction(Actions.SET_USER, user))
          .subscribe((action) => this.store.dispatch(action));
    }
@@ -27,5 +36,10 @@ export class UserService extends AbstractService {
    public getCurrentUser(): Observable<User> {
       return this.store.select('user')
          .skipWhile((user) => !user);
+   }
+
+   public getCurrentAdmin(): Observable<Admin> {
+      return this.store.select('admin')
+         .skipWhile((admin) => !admin);
    }
 }

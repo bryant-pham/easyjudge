@@ -42,6 +42,7 @@ import { event } from './shared/reducer/event.reducer';
 import { UserService } from './shared/service/user.service';
 import { EventService } from './shared/service/event.service';
 import { LoginComponent } from './login/login.component';
+import { admin } from './shared/reducer/admin.reducer';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -76,7 +77,8 @@ type StoreType = {
       RouterModule.forRoot(ROUTES, { preloadingStrategy: PreloadAllModules }),
       StoreModule.provideStore({
          user,
-         event
+         event,
+         admin
       }),
       MaterialModule.forRoot()
    ],

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../shared/service/user.service';
 import { User } from '../shared/datamodel/user';
 import { AbstractComponent } from '../shared/component/abstract.component';
+import { Admin } from '../shared/datamodel/admin';
 
 @Component({
    selector: 'login',
@@ -22,11 +23,11 @@ export class LoginComponent extends AbstractComponent implements OnInit {
    public ngOnInit(): void {
       this.subs.push(this.userService.getCurrentUser()
          .subscribe((user: User) => {
-            if (user.isAdmin) {
-               this.router.navigate(['/admin'])
-            } else {
-               this.router.navigate(['/score']);
-            }
+            // this.router.navigate(['/score']);
+         }));
+      this.subs.push(this.userService.getCurrentAdmin()
+         .subscribe((admin: Admin) => {
+            // this.router.navigate(['/admin'])
          }));
    }
 
@@ -35,7 +36,7 @@ export class LoginComponent extends AbstractComponent implements OnInit {
    }
 
    public adminLogin(): void {
-      this.userService.login(this.username, this.password);
+      this.userService.adminLogin(this.username, this.password);
    }
 
    public toggleLoginMode(): void {

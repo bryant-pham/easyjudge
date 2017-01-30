@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 const CRITERIA = 'criteria';
 const SCORE = 'score';
 const LOGIN = 'login';
+const ADMIN_LOGIN = 'admin/login';
 const EVENT = 'event';
 
 @Injectable()
@@ -23,6 +24,10 @@ export class UriGenerator {
 
    public login(): string {
       return this.generate(LOGIN);
+   }
+
+   public adminLogin(): string {
+      return this.generate(ADMIN_LOGIN);
    }
 
    public event(): string {
