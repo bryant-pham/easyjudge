@@ -43,6 +43,7 @@ import { UserService } from './shared/service/user.service';
 import { EventService } from './shared/service/event.service';
 import { LoginComponent } from './login/login.component';
 import { admin } from './shared/reducer/admin.reducer';
+import { scoresheets } from './shared/reducer/scoresheets.reducer';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -78,7 +79,8 @@ type StoreType = {
       StoreModule.provideStore({
          user,
          events,
-         admin
+         admin,
+         scoresheets
       }),
       MaterialModule.forRoot()
    ],

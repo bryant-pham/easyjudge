@@ -1,17 +1,24 @@
 import { Criteria } from './criteria';
 
 export class ScoreSheet {
-   public eventid: string;
+   public static from(json: any): ScoreSheet {
+      return new ScoreSheet(json.eventId, json.criteria,
+         json.judgeName, json.projectNumber, json.id);
+   }
+
+   public id: string;
+   public eventId: string;
    public criteria: Criteria[];
    public judgeName: string;
    public projectNumber: string;
 
-   constructor(eventid: string, criteria: Criteria[],
-               judgeName: string, projectNumber?: string) {
-      this.eventid = eventid;
+   constructor(eventId: string, criteria: Criteria[],
+               judgeName: string, projectNumber?: string, id?: string) {
+      this.eventId = eventId;
       this.criteria = criteria;
       this.judgeName = judgeName;
       this.projectNumber = projectNumber;
+      this.id = id;
    }
 
    public getScore(): number {
