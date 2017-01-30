@@ -17,7 +17,7 @@ export class EventService extends AbstractService {
    }
 
    public load(): void {
-      let uri = this.uriGenerator.event();
+      let uri = this.uriGenerator.events();
       this.http.get(uri)
          .map((json) => Event.from(json))
          .map((events) => this.createAction(Actions.SET_EVENTS, events))
