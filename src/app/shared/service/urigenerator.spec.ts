@@ -27,9 +27,42 @@ describe('UriGenerator', () => {
       expect(result).toEqual('http://localhost:8080/api/events');
    });
 
+   it('should generate active events uri', () => {
+      let result = uriGen.activeEvent();
+
+      expect(result).toEqual('http://localhost:8080/api/events/active');
+   });
+
+   it('should generate score uri with eventId query param', () => {
+      let result = uriGen.scoreWithQueryParams('1');
+
+      expect(result).toEqual('http://localhost:8080/api/score?eventId=1');
+   });
+
+   it('should generate score uri with userId query param', () => {
+      let result = uriGen.scoreWithQueryParams(null, '1');
+
+      expect(result).toEqual('http://localhost:8080/api/score?userId=1');
+   });
+
+   it('should generate score uri with eventID and userId query param', () => {
+      let result = uriGen.scoreWithQueryParams('1', '1');
+
+      expect(result).toEqual('http://localhost:8080/api/score?eventId=1&userId=1');
+   });
+
    it('should generate uri replacing placeholders in path', () => {
       let result = uriGen.generate('test/:?/:?/:?', 'john', 'cena', 'ayy');
 
       expect(result).toEqual('http://localhost:8080/api/test/john/cena/ayy');
+   });
+
+   it('should append query parameters', () => {
+      let queryParams = new Map<string, string>();
+      queryParams.set('first', 'john');
+      queryParams.set('last', 'cena');
+      let result = uriGen.appendQueryParams('test', queryParams);
+
+      expect(result).toEqual('test?first=john&last=cena');
    });
 });

@@ -3,20 +3,20 @@ import { Criteria } from './criteria';
 export class ScoreSheet {
    public static from(json: any): ScoreSheet {
       return new ScoreSheet(json.eventId, json.criteria,
-         json.judgeName, json.projectNumber, json.id);
+         json.user, json.projectNumber, json.id);
    }
 
    public id: string;
    public eventId: string;
    public criteria: Criteria[];
-   public judgeName: string;
+   public userId: string;
    public projectNumber: string;
 
    constructor(eventId: string, criteria: Criteria[],
-               judgeName: string, projectNumber?: string, id?: string) {
+               userId: string, projectNumber?: string, id?: string) {
       this.eventId = eventId;
       this.criteria = criteria;
-      this.judgeName = judgeName;
+      this.userId = userId;
       this.projectNumber = projectNumber;
       this.id = id;
    }
