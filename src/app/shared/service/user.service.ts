@@ -20,7 +20,7 @@ export class UserService extends AbstractService {
    public login(username: string): void {
       let uri = this.uriGenerator.login();
       this.http.post(uri, new User(username))
-         .map((json) => new User(json.username))
+         .map((json) => new User(json.username, json.id))
          .map((user) => this.createAction(Actions.SET_USER, user))
          .subscribe((action) => this.store.dispatch(action));
    }

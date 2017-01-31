@@ -27,7 +27,7 @@ export class ScoreSheetService extends AbstractService {
          .switchMap((currentUser: User) => {
             return this.eventService.getActiveEvent()
                .switchMap((event: Event) => {
-                  let scoreSheet = new ScoreSheet(event.id, event.criteria, currentUser.username);
+                  let scoreSheet = new ScoreSheet(event.id, event.criteria, currentUser.id);
                   return Observable.of(scoreSheet);
                });
          });
