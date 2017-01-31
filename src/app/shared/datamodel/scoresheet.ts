@@ -3,7 +3,7 @@ import { Criteria } from './criteria';
 export class ScoreSheet {
    public static from(json: any): ScoreSheet {
       return new ScoreSheet(json.eventId, json.criteria,
-         json.user, json.projectNumber, json.id);
+         json.userId, json.projectNumber, json.id);
    }
 
    public id: string;
