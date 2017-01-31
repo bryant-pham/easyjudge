@@ -28,7 +28,7 @@ export class UserService extends AbstractService {
    public adminLogin(username: string, password: string): void {
       let uri = this.uriGenerator.adminLogin();
       this.http.post(uri, new Admin(username, password))
-         .map((json) => new Admin(json.username))
+         .map((json) => Admin.from(json))
          .map((user) => this.createAction(Actions.SET_USER, user))
          .subscribe((action) => this.store.dispatch(action));
    }

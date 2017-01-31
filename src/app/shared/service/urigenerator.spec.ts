@@ -24,7 +24,7 @@ describe('UriGenerator', () => {
    it('should generate events uri', () => {
       let result = uriGen.events();
 
-      expect(result).toEqual('http://localhost:8080/api/event');
+      expect(result).toEqual('http://localhost:8080/api/events');
    });
 
    it('should generate uri replacing placeholders in path', () => {

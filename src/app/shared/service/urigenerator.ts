@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 const SCORE = 'score';
 const LOGIN = 'login';
 const ADMIN_LOGIN = 'admin/login';
-const EVENT = 'event';
+const EVENTS = 'events';
 
 @Injectable()
 export class UriGenerator {
@@ -26,7 +26,7 @@ export class UriGenerator {
    }
 
    public events(): string {
-      return this.generate(EVENT);
+      return this.generate(EVENTS);
    }
 
    public generate(path: string, ...args: string[]): string {
