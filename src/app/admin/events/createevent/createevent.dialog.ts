@@ -25,7 +25,8 @@ export class CreateEventDialog implements OnInit {
    }
 
    public save(): void {
-      // no op
+      this.eventService.create(this.event);
+      this.dialogRef.close();
    }
 
    public addCriteria(): void {

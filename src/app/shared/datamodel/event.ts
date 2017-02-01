@@ -1,7 +1,7 @@
 import { Criteria } from './criteria';
 
 export class Event {
-   public static from(json: any[]): Event[] {
+   public static arrayFrom(json: any[]): Event[] {
       let events = [];
       for (let elem of json) {
          let event = new Event(elem.name, Criteria.from(elem.criteria),
@@ -9,6 +9,11 @@ export class Event {
          events.push(event);
       }
       return events;
+   }
+
+   public static from(json: any): Event {
+      return new Event(json.name, Criteria.from(json.criteria),
+         json.organization, json.active, json.id);
    }
 
    public static createEmpty(): Event {

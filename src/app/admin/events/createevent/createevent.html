@@ -4,10 +4,11 @@
       <md-input-container>
          <input md-input placeholder="Name" [(ngModel)]="event.name">
       </md-input-container>
+      <md-slide-toggle [(ngModel)]=event.active>Enable</md-slide-toggle>
    </div>
    <div *ngFor="let criteria of event.criteria; let i = index">
       <md-input-container>
-         <input md-input placeholder="Criteria {{i+1}} Requirement" >
+         <input md-input placeholder="Criteria {{i+1}} Requirement" [(ngModel)]="criteria.text">
       </md-input-container>
    </div>
 </div>

@@ -165,6 +165,7 @@ module.exports = function (options) {
             '@angular/router',
             '@angularclass/hmr',
             'rxjs',
+             'hammerjs'
           ]
         },
         dllDir: helpers.root('dll'),
