@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MdDialogRef } from '@angular/material';
 
 import { EventService } from '../../../shared/service/event.service';
@@ -6,19 +6,15 @@ import { Event } from '../../../shared/datamodel/event';
 import { Criteria } from '../../../shared/datamodel/criteria';
 
 @Component({
-   selector: 'create-event-dialog',
-   templateUrl: './createevent.html'
+   selector: 'event-dialog',
+   templateUrl: './eventdialog.html'
 })
-export class CreateEventDialog implements OnInit {
+export class EventDialog {
    public event: Event;
+   public title: string;
 
-   constructor(private dialogRef: MdDialogRef<CreateEventDialog>,
+   constructor(private dialogRef: MdDialogRef<EventDialog>,
                private eventService: EventService) {}
-
-   public ngOnInit(): void {
-      this.event = Event.createEmpty();
-      this.addCriteria();
-   }
 
    public close(): void {
       this.dialogRef.close();
