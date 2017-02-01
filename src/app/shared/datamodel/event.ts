@@ -5,7 +5,7 @@ export class Event {
       let events = [];
       for (let elem of json) {
          let event = new Event(elem.id, elem.name, Criteria.from(elem.criteria),
-            elem.organization, elem.isActive);
+            elem.organization, elem.active);
          events.push(event);
       }
       return events;
@@ -15,14 +15,14 @@ export class Event {
    public name: string;
    public criteria: Criteria[];
    public organization: string;
-   public isActive: boolean;
+   public active: boolean;
 
    constructor(id: string, name: string, criteria: Criteria[],
-               organization: string, isActive: boolean) {
+               organization: string, active: boolean) {
       this.id = id;
       this.name = name;
       this.criteria = criteria;
       this.organization = organization;
-      this.isActive = isActive;
+      this.active = active;
    }
 }
