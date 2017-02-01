@@ -21,7 +21,7 @@ export class EventDialog {
    }
 
    public save(): void {
-      this.eventService.create(this.event);
+      this.eventService.save(this.event);
       this.dialogRef.close();
    }
 

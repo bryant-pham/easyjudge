@@ -34,11 +34,23 @@ export class EventService extends AbstractService {
          .map((events: Event[]) => events.find((event: Event) => event.active));
    }
 
+   public save(event: Event): void {
+      if (event.id) {
+         this.update(event);
+      } else {
+         this.create(event);
+      }
+   }
+
    public create(event: Event): void {
       let uri = this.uriGenerator.events();
       this.http.post(uri, event)
          .map((json) => Event.from(json))
          .map((event) => this.createAction(Actions.ADD_EVENT, event))
          .subscribe((action) => this.store.dispatch(action));
+   }
+
+   public update(event: Event): void {
+      // TODO add update logic
    }
 }
