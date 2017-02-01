@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { AdminComponent } from './admin.component';
-import { EventComponent } from './events/adminevents.component';
+import { EventComponent } from './events/event.component';
 
 export const ADMIN_ROUTES: Routes = [
    {
