@@ -7,6 +7,10 @@ export class Criteria {
       return criteria;
    }
 
+   public static createEmpty(): Criteria {
+      return new Criteria(null);
+   }
+
    public text: string;
    public score: number;
 

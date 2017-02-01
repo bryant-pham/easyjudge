@@ -5,7 +5,6 @@ import {
   Component,
   ViewEncapsulation
 } from '@angular/core';
-import { EventService } from './shared/service/event.service';
 
 /*
  * App Component
@@ -23,11 +22,7 @@ import { EventService } from './shared/service/event.service';
     </main>
   `
 })
-export class AppComponent {
-   constructor(eventService: EventService) {
-      eventService.load();
-   }
-}
+export class AppComponent {}
 
 /*
  * Please review the https://github.com/AngularClass/angular2-examples/ repo for

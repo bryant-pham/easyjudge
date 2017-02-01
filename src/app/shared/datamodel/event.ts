@@ -4,11 +4,15 @@ export class Event {
    public static from(json: any[]): Event[] {
       let events = [];
       for (let elem of json) {
-         let event = new Event(elem.id, elem.name, Criteria.from(elem.criteria),
-            elem.organization, elem.active);
+         let event = new Event(elem.name, Criteria.from(elem.criteria),
+            elem.organization, elem.active, elem.id);
          events.push(event);
       }
       return events;
+   }
+
+   public static createEmpty(): Event {
+      return new Event(null, [], null, false);
    }
 
    public id: string;
@@ -17,8 +21,8 @@ export class Event {
    public organization: string;
    public active: boolean;
 
-   constructor(id: string, name: string, criteria: Criteria[],
-               organization: string, active: boolean) {
+   constructor(name: string, criteria: Criteria[],
+               organization: string, active: boolean, id?: string) {
       this.id = id;
       this.name = name;
       this.criteria = criteria;

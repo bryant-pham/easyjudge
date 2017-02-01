@@ -44,6 +44,7 @@ import { EventService } from './shared/service/event.service';
 import { LoginComponent } from './login/login.component';
 import { admin } from './shared/reducer/admin.reducer';
 import { scoresheets } from './shared/reducer/scoresheets.reducer';
+import { AdminModule } from './admin/admin.module';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -82,7 +83,8 @@ type StoreType = {
          admin,
          scoresheets
       }),
-      MaterialModule.forRoot()
+      MaterialModule.forRoot(),
+      AdminModule
    ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
       ENV_PROVIDERS,

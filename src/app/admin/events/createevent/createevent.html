@@ -1,0 +1,18 @@
+<h1 md-dialog-title>Create an event</h1>
+<div md-dialog-content>
+   <div>
+      <md-input-container>
+         <input md-input placeholder="Name" [(ngModel)]="event.name">
+      </md-input-container>
+   </div>
+   <div *ngFor="let criteria of event.criteria; let i = index">
+      <md-input-container>
+         <input md-input placeholder="Criteria {{i+1}} Requirement" >
+      </md-input-container>
+   </div>
+</div>
+<md-dialog-actions>
+   <button md-button (click)="addCriteria()">Add Criteria</button>
+   <button md-button (click)="close()">Close</button>
+   <button md-button (click)="save()">Save</button>
+</md-dialog-actions>
