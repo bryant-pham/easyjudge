@@ -26,4 +26,9 @@ export class HttpService {
       return this.http.put(uri, bodyAsString, options)
          .map((response) => response.json());
    }
+
+   public delete(uri: string): Observable<any> {
+      return this.http.delete(uri)
+         .map((response) => response.json());
+   }
 }

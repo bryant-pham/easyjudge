@@ -38,4 +38,8 @@ export class EventComponent extends AbstractComponent implements OnInit {
       component.event = event.clone();
       component.title = 'Edit event';
    }
+
+   public deleteEvent(event: Event): void {
+      this.eventService.delete(event);
+   }
 }

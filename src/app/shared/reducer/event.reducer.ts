@@ -11,8 +11,10 @@ export function event(state = new Map<string, Event>(), action: Action): Map<str
          });
          return new Map(state);
       case Actions.ADD_UPDATE_EVENT:
-         let event: Event = action.payload;
-         state.set(event.id, event);
+         state.set(action.payload.id, action.payload);
+         return new Map(state);
+      case Actions.DELETE_EVENT:
+         state.delete(action.payload);
          return new Map(state);
       default:
          return state;
