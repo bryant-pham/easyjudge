@@ -58,7 +58,7 @@ type StoreType = {
   disposeOldHosts: () => void
 };
 
-const uriGeneratorFactory = () =>
+export const uriGeneratorFactory = () =>
    new UriGenerator({ scheme: 'http', host: 'localhost', port: '8080', context: 'api' });
 
 /**
