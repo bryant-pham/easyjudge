@@ -45,6 +45,7 @@ import { LoginComponent } from './login/login.component';
 import { admin } from './shared/reducer/admin.reducer';
 import { scoresheets } from './shared/reducer/scoresheets.reducer';
 import { AdminModule } from './admin/admin.module';
+import { uriGeneratorFactory } from './factoryfunctions';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -57,9 +58,6 @@ type StoreType = {
   restoreInputValues: () => void,
   disposeOldHosts: () => void
 };
-
-export const uriGeneratorFactory = () =>
-   new UriGenerator({ scheme: 'http', host: 'localhost', port: '8080', context: 'api' });
 
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
