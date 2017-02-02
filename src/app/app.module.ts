@@ -58,6 +58,9 @@ type StoreType = {
   disposeOldHosts: () => void
 };
 
+const uriGeneratorFactory = () =>
+   new UriGenerator({ scheme: 'http', host: 'localhost', port: '8080', context: 'api' });
+
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
  */
@@ -90,9 +93,7 @@ type StoreType = {
       ENV_PROVIDERS,
       APP_PROVIDERS,
       HttpService,
-      { provide: UriGenerator,
-         useFactory: () =>
-            new UriGenerator({ scheme: 'http', host: 'localhost', port: '8080', context: 'api' }) },
+      { provide: UriGenerator, useFactory:  uriGeneratorFactory },
       ScoreService,
       UserService,
       EventService,
