@@ -7,7 +7,7 @@ import { Event } from '../../shared/datamodel/event';
 import { EventDialogComponent } from './eventdialog/event.dialog';
 
 @Component({
-   selector: 'events',
+   selector: 'event',
    templateUrl: './event.html',
    styleUrls: ['./event.css']
 })

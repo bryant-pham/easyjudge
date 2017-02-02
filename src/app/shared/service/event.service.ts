@@ -25,8 +25,12 @@ export class EventService extends AbstractService {
    }
 
    public getEvents(): Observable<Event[]> {
-      return this.store.select('events')
-         .skipWhile((events) => !events);
+      return this.store.select('event')
+         .map((eventMap: Map<string, Event>) => {
+            let events = [];
+            eventMap.forEach((event) => events.push(event));
+            return events;
+         });
    }
 
    public getActiveEvent(): Observable<Event> {
@@ -46,11 +50,15 @@ export class EventService extends AbstractService {
       let uri = this.uriGenerator.event();
       this.http.post(uri, event)
          .map((json) => Event.from(json))
-         .map((createdEvent) => this.createAction(Actions.ADD_EVENT, createdEvent))
+         .map((createdEvent) => this.createAction(Actions.ADD_UPDATE_EVENT, createdEvent))
          .subscribe((action) => this.store.dispatch(action));
    }
 
    public update(event: Event): void {
-      // TODO add update logic
+      let uri = this.uriGenerator.eventWithId(event.id);
+      this.http.post(uri, event)
+         .map((json) => Event.from(json))
+         .map((createdEvent) => this.createAction(Actions.ADD_UPDATE_EVENT, createdEvent))
+         .subscribe((action) => this.store.dispatch(action));
    }
 }

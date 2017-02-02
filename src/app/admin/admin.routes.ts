@@ -10,11 +10,11 @@ export const ADMIN_ROUTES: Routes = [
       children: [
          {
             path: '',
-            redirectTo: 'events',
+            redirectTo: 'event',
             pathMatch: 'full'
          },
          {
-            path: 'events',
+            path: 'event',
             component: EventComponent
          }
       ]
