@@ -56,7 +56,7 @@ export class EventService extends AbstractService {
 
    public update(event: Event): void {
       let uri = this.uriGenerator.eventWithId(event.id);
-      this.http.post(uri, event)
+      this.http.put(uri, event)
          .map((json) => Event.from(json))
          .map((createdEvent) => this.createAction(Actions.ADD_UPDATE_EVENT, createdEvent))
          .subscribe((action) => this.store.dispatch(action));

@@ -1,9 +1,12 @@
 <md-nav-list>
    <md-list-item *ngFor="let event of events">
       <a md-line href="#">{{ event.name }}</a>
-      <!--<button md-icon-button (click)="showInfo(link)">-->
-         <!--<md-icon>info</md-icon>-->
-      <!--</button>-->
+      <button md-icon-button (click)="openEditDialog(event)">
+         <md-icon>edit</md-icon>
+      </button>
+      <button md-icon-button (click)="openEditDialog(event)">
+         <md-icon>delete</md-icon>
+      </button>
    </md-list-item>
 </md-nav-list>
 <button md-fab id="create-event" (click)="openCreateDialog()">

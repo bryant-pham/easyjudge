@@ -18,4 +18,12 @@ export class HttpService {
       return this.http.post(uri, bodyAsString, options)
          .map((response) => response.json());
    }
+
+   public put(uri: string, body: any): Observable<any> {
+      let bodyAsString = JSON.stringify(body);
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers });
+      return this.http.put(uri, bodyAsString, options)
+         .map((response) => response.json());
+   }
 }

@@ -34,4 +34,8 @@ export class Event {
       this.organization = organization;
       this.active = active;
    }
+
+   clone(): Event {
+      return new Event(this.name, this.criteria, this.organization, this.active, this.id);
+   }
 }

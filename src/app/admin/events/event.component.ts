@@ -35,7 +35,7 @@ export class EventComponent extends AbstractComponent implements OnInit {
    public openEditDialog(event: Event): void {
       let dialogRef = this.dialog.open(EventDialogComponent, {disableClose: true});
       let component = dialogRef.componentInstance;
-      component.event = event;
+      component.event = event.clone();
       component.title = 'Edit event';
    }
 }
