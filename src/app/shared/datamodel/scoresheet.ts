@@ -6,7 +6,7 @@ export class ScoreSheet {
          json.userId, json.projectNumber, json.id);
    }
 
-   public static arrayFrom(json: Array<any>): Array<ScoreSheet> {
+   public static arrayFrom(json: any[]): ScoreSheet[] {
       let scores = [];
       for (let elem of json) {
          let score = new ScoreSheet(elem.eventId, elem.criteria,

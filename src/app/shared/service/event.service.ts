@@ -67,7 +67,7 @@ export class EventService extends AbstractService {
       this.http.delete(uri)
          .subscribe(() => {
             let action = this.createAction(Actions.DELETE_EVENT, event.id);
-            this.store.dispatch(action)
+            this.store.dispatch(action);
          });
    }
 }

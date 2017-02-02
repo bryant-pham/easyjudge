@@ -44,7 +44,7 @@ export class ScoreService extends AbstractService {
          .catch(() => Observable.of(false));
    }
 
-   public getScoresForEvent(eventId: string): Observable<Array<ScoreSheet>> {
+   public getScoresForEvent(eventId: string): Observable<ScoreSheet[]> {
       let uri = this.uriGenerator.scoreWithQueryParams(eventId);
       return this.http.get(uri)
          .map((json) => ScoreSheet.arrayFrom(json));

@@ -23,18 +23,18 @@ export class ViewScoresComponent extends AbstractComponent implements OnInit {
          .map((params: Params) => params['eventId'])
          .subscribe((eventId: string) => {
             this.scoreService.getScoresForEvent(eventId)
-               .subscribe((scores: Array<ScoreSheet>) => this.sumScores(scores));
+               .subscribe((scores: ScoreSheet[]) => this.sumScores(scores));
          });
    }
 
-   private sumScores(scores: Array<ScoreSheet>): void {
+   private sumScores(scores: ScoreSheet[]): void {
       this.populateScoreMap(scores);
       this.scoreMap.forEach((sumScore, projectNumber) => {
          this.scores.push({projectNumber, sumScore});
       });
    }
 
-   private populateScoreMap(scores: Array<ScoreSheet>): void {
+   private populateScoreMap(scores: ScoreSheet[]): void {
       for (let score of scores) {
          if (!this.scoreMap.has(score.projectNumber)) {
             this.scoreMap.set(score.projectNumber, 0);
