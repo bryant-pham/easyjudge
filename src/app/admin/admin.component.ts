@@ -6,12 +6,12 @@ import { EventService } from '../shared/service/event.service';
 })
 export class AdminComponent implements OnInit {
    public navLinks = [
-      {link: '/admin/events', label: 'Events'}
+      {link: '/admin/event', label: 'Events'}
    ];
 
    constructor(private eventService: EventService) {}
 
-   ngOnInit(): void {
+   public ngOnInit(): void {
       this.eventService.load();
    }
 }

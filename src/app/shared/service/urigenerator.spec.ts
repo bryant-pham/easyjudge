@@ -21,16 +21,16 @@ describe('UriGenerator', () => {
       expect(result).toEqual('http://localhost:8080/api/admin/login');
    });
 
-   it('should generate events uri', () => {
-      let result = uriGen.events();
+   it('should generate event uri', () => {
+      let result = uriGen.event();
 
-      expect(result).toEqual('http://localhost:8080/api/events');
+      expect(result).toEqual('http://localhost:8080/api/event');
    });
 
-   it('should generate active events uri', () => {
+   it('should generate active event uri', () => {
       let result = uriGen.activeEvent();
 
-      expect(result).toEqual('http://localhost:8080/api/events/active');
+      expect(result).toEqual('http://localhost:8080/api/event/active');
    });
 
    it('should generate score uri with eventId query param', () => {
@@ -45,10 +45,16 @@ describe('UriGenerator', () => {
       expect(result).toEqual('http://localhost:8080/api/score?userId=1');
    });
 
-   it('should generate score uri with eventID and userId query param', () => {
+   it('should generate score uri with eventId and userId query param', () => {
       let result = uriGen.scoreWithQueryParams('1', '1');
 
       expect(result).toEqual('http://localhost:8080/api/score?eventId=1&userId=1');
+   });
+
+   it('should generate event uri with event id', () => {
+      let result = uriGen.eventWithId('1');
+
+      expect(result).toEqual('http://localhost:8080/api/event/1');
    });
 
    it('should generate uri replacing placeholders in path', () => {

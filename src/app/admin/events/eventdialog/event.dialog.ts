@@ -9,11 +9,11 @@ import { Criteria } from '../../../shared/datamodel/criteria';
    selector: 'event-dialog',
    templateUrl: './eventdialog.html'
 })
-export class EventDialog {
+export class EventDialogComponent {
    public event: Event;
    public title: string;
 
-   constructor(private dialogRef: MdDialogRef<EventDialog>,
+   constructor(private dialogRef: MdDialogRef<EventDialogComponent>,
                private eventService: EventService) {}
 
    public close(): void {

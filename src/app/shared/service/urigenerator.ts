@@ -3,8 +3,9 @@ import { Injectable } from '@angular/core';
 const SCORE = 'score';
 const LOGIN = 'login';
 const ADMIN_LOGIN = 'admin/login';
-const EVENTS = 'events';
-const ACTIVE_EVENT = 'events/active';
+const EVENT = 'event';
+const EVENT_ID = 'event/:?';
+const ACTIVE_EVENT = 'event/active';
 
 @Injectable()
 export class UriGenerator {
@@ -37,12 +38,16 @@ export class UriGenerator {
       return this.generate(ADMIN_LOGIN);
    }
 
-   public events(): string {
-      return this.generate(EVENTS);
+   public event(): string {
+      return this.generate(EVENT);
    }
 
    public activeEvent(): string {
       return this.generate(ACTIVE_EVENT);
+   }
+
+   public eventWithId(eventId: string): string {
+      return this.generate(EVENT_ID, eventId);
    }
 
    public generate(path: string, ...args: string[]): string {

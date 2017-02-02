@@ -8,7 +8,7 @@ import { MaterialModule, MdDialog } from '@angular/material';
 import { ADMIN_ROUTES } from './admin.routes';
 import { AdminComponent } from './admin.component';
 import { EventComponent } from './events/event.component';
-import { EventDialog } from './events/eventdialog/event.dialog';
+import { EventDialogComponent } from './events/eventdialog/event.dialog';
 
 @NgModule({
    imports: [
@@ -22,11 +22,11 @@ import { EventDialog } from './events/eventdialog/event.dialog';
    declarations: [
       AdminComponent,
       EventComponent,
-      EventDialog
+      EventDialogComponent
    ],
    providers: [
       MdDialog
    ],
-   entryComponents: [ EventDialog ]
+   entryComponents: [ EventDialogComponent ]
 })
 export class AdminModule {}

@@ -4,7 +4,7 @@ import { MdDialog } from '@angular/material';
 import { EventService } from '../../shared/service/event.service';
 import { AbstractComponent } from '../../shared/component/abstract.component';
 import { Event } from '../../shared/datamodel/event';
-import { EventDialog } from './eventdialog/event.dialog';
+import { EventDialogComponent } from './eventdialog/event.dialog';
 
 @Component({
    selector: 'events',
@@ -25,7 +25,7 @@ export class EventComponent extends AbstractComponent implements OnInit {
    }
 
    public openCreateDialog(): void {
-      let dialogRef = this.dialog.open(EventDialog, {disableClose: true});
+      let dialogRef = this.dialog.open(EventDialogComponent, {disableClose: true});
       let component = dialogRef.componentInstance;
       component.event = Event.createEmpty();
       component.addCriteria();
@@ -33,7 +33,7 @@ export class EventComponent extends AbstractComponent implements OnInit {
    }
 
    public openEditDialog(event: Event): void {
-      let dialogRef = this.dialog.open(EventDialog, {disableClose: true});
+      let dialogRef = this.dialog.open(EventDialogComponent, {disableClose: true});
       let component = dialogRef.componentInstance;
       component.event = event;
       component.title = 'Edit event';
