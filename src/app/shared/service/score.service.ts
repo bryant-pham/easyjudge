@@ -13,7 +13,7 @@ import { Event } from '../datamodel/event';
 import { Actions } from '../reducer/actions';
 
 @Injectable()
-export class ScoreSheetService extends AbstractService {
+export class ScoreService extends AbstractService {
    constructor(private http: HttpService,
                private uriGenerator: UriGenerator,
                private userService: UserService,
@@ -33,14 +33,20 @@ export class ScoreSheetService extends AbstractService {
          });
    }
 
-   public submitSheet(sheet: ScoreSheet): Observable<boolean> {
+   public submitScore(scoreSheet: ScoreSheet): Observable<boolean> {
       let uri = this.uriGenerator.score();
-      return this.http.post(uri, sheet)
+      return this.http.post(uri, scoreSheet)
          .map((json) => {
             let action = this.createAction(Actions.ADD_SCORESHEET, ScoreSheet.from(json));
             this.store.dispatch(action);
             return true;
          })
          .catch(() => Observable.of(false));
+   }
+
+   public getScoresForEvent(eventId: string): Observable<Array<ScoreSheet>> {
+      let uri = this.uriGenerator.scoreWithQueryParams(eventId);
+      return this.http.get(uri)
+         .map((json) => ScoreSheet.arrayFrom(json));
    }
 }

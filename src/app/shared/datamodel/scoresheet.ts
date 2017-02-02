@@ -6,6 +6,16 @@ export class ScoreSheet {
          json.userId, json.projectNumber, json.id);
    }
 
+   public static arrayFrom(json: Array<any>): Array<ScoreSheet> {
+      let scores = [];
+      for (let elem of json) {
+         let score = new ScoreSheet(elem.eventId, elem.criteria,
+            elem.userId, elem.projectNumber, elem.id);
+         scores.push(score);
+      }
+      return scores;
+   }
+
    public id: string;
    public eventId: string;
    public criteria: Criteria[];

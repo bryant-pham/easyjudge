@@ -36,7 +36,7 @@ import '../styles/headings.css';
 import { ScoreSheetComponent } from './scoresheet/scoresheet.component';
 import { HttpService } from './shared/service/http.service';
 import { UriGenerator } from './shared/service/urigenerator';
-import { ScoreSheetService } from './shared/service/scoresheet.service';
+import { ScoreService } from './shared/service/score.service';
 import { user } from './shared/reducer/user.reducer';
 import { event } from './shared/reducer/event.reducer';
 import { UserService } from './shared/service/user.service';
@@ -93,7 +93,7 @@ type StoreType = {
       { provide: UriGenerator,
          useFactory: () =>
             new UriGenerator({ scheme: 'http', host: 'localhost', port: '8080', context: 'api' }) },
-      ScoreSheetService,
+      ScoreService,
       UserService,
       EventService,
       MdSnackBar

@@ -1,6 +1,9 @@
 <md-nav-list>
    <md-list-item *ngFor="let event of events">
-      <a md-line href="#">{{ event.name }}</a>
+      <a md-line [routerLink]="['/admin/scores', event.id]">{{ event.name }}</a>
+      <button md-icon-button>
+         <md-icon>description</md-icon>
+      </button>
       <button md-icon-button (click)="openEditDialog(event)">
          <md-icon>edit</md-icon>
       </button>

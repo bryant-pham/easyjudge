@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MdSnackBar } from '@angular/material';
 
-import { ScoreSheetService } from '../shared/service/scoresheet.service';
+import { ScoreService } from '../shared/service/score.service';
 import { ScoreSheet } from '../shared/datamodel/scoresheet';
 import { mdSnackBarConfig } from '../shared/datamodel/snackbarconfig';
 
@@ -12,7 +12,7 @@ import { mdSnackBarConfig } from '../shared/datamodel/snackbarconfig';
 export class ScoreSheetComponent implements OnInit {
    public scoreSheet: ScoreSheet;
 
-   constructor(private scoreSheetService: ScoreSheetService,
+   constructor(private scoreSheetService: ScoreService,
                private snackBar: MdSnackBar) {}
 
    public ngOnInit(): void {
@@ -21,7 +21,7 @@ export class ScoreSheetComponent implements OnInit {
    }
 
    public submitSheet(): void {
-      this.scoreSheetService.submitSheet(this.scoreSheet)
+      this.scoreSheetService.submitScore(this.scoreSheet)
          .subscribe((success: boolean) => {
             if (success) {
                this.scoreSheet.clear();

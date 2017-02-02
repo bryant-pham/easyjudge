@@ -9,7 +9,7 @@ import {
 import { AppComponent } from './app.component';
 import { AppState } from './app.service';
 import { UserService } from './shared/service/user.service';
-import { ScoreSheetService } from './shared/service/scoresheet.service';
+import { ScoreService } from './shared/service/score.service';
 import { EventService } from './shared/service/event.service';
 
 class MockService {
@@ -33,7 +33,7 @@ describe(`App`, () => {
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
          AppState,
-         { provide: ScoreSheetService, useClass: MockService },
+         { provide: ScoreService, useClass: MockService },
          { provide: UserService, useClass: MockService },
          { provide: EventService, useClass: MockService }
       ]

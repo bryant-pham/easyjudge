@@ -9,6 +9,7 @@ import { ADMIN_ROUTES } from './admin.routes';
 import { AdminComponent } from './admin.component';
 import { EventComponent } from './events/event.component';
 import { EventDialogComponent } from './events/eventdialog/event.dialog';
+import { ViewScoresComponent } from './score/viewscores.component';
 
 @NgModule({
    imports: [
@@ -22,7 +23,8 @@ import { EventDialogComponent } from './events/eventdialog/event.dialog';
    declarations: [
       AdminComponent,
       EventComponent,
-      EventDialogComponent
+      EventDialogComponent,
+      ViewScoresComponent
    ],
    providers: [
       MdDialog
