@@ -8,7 +8,7 @@
    <div *ngIf="formErrors.projectNumber" class="validation">
       {{ formErrors.projectNumber }}
    </div>
-   <div *ngFor="let criteria of scoreSheet.criteria">
+   <div *ngFor="let criteria of scoreSheet.criteria" class="criteria-group">
       <div>
          {{ criteria.text }}
       </div>
