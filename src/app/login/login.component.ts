@@ -34,11 +34,15 @@ export class LoginComponent extends AbstractComponent implements OnInit {
    }
 
    public login(): void {
-      this.userService.login(this.username);
+      if (!this.isUndefinedOrEmpty(this.username)) {
+         this.userService.login(this.username);
+      }
    }
 
    public adminLogin(): void {
-      this.userService.adminLogin(this.username, this.password);
+      if (!this.isUndefinedOrEmpty(this.username) && !this.isUndefinedOrEmpty(this.username)) {
+         this.userService.adminLogin(this.username, this.password);
+      }
    }
 
    public toggleLoginMode(): void {
@@ -50,5 +54,9 @@ export class LoginComponent extends AbstractComponent implements OnInit {
          return 'Log in as judge';
       }
       return 'Log in as admin ';
+   }
+
+   private isUndefinedOrEmpty(field: string): boolean {
+      return !field || field === '';
    }
 }
