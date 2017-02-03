@@ -35,7 +35,8 @@ export class EventService extends AbstractService {
 
    public getActiveEvent(): Observable<Event> {
       return this.getEvents()
-         .map((events: Event[]) => events.find((event: Event) => event.active));
+         .map((events: Event[]) => events.find((event: Event) => event.active))
+         .skipWhile((event: Event) => !event);
    }
 
    public save(event: Event): void {
