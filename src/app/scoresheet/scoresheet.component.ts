@@ -13,15 +13,15 @@ import { mdSnackBarConfig } from '../shared/datamodel/snackbarconfig';
 })
 export class ScoreSheetComponent implements OnInit {
    public scoreSheet: ScoreSheet;
-
-   private scoreForm: FormGroup;
-   private formErrors = {
-      'projectNumber': ''
+   public scoreForm: FormGroup;
+   public formErrors = {
+      projectNumber: ''
    };
+
    private validationMessages = {
-      'projectNumber': {
-         'required': 'Project number is required.',
-         'pattern': 'Project number must be numeric'
+      projectNumber: {
+         required: 'Project number is required.',
+         pattern: 'Project number must be numeric'
       }
    };
 
@@ -54,7 +54,7 @@ export class ScoreSheetComponent implements OnInit {
    private buildForm(): void {
       this.scoreForm = this.formBuilder.group(
          {
-            'projectNumber': [
+            projectNumber: [
                this.scoreSheet.projectNumber,
                [
                   Validators.required,
@@ -64,22 +64,23 @@ export class ScoreSheetComponent implements OnInit {
          }
       );
       this.scoreForm.valueChanges
-         .subscribe(data => this.onValueChanged(data));
+         .subscribe((data) => this.onValueChanged(data));
       this.onValueChanged();
    }
 
    private onValueChanged(data?: any): void {
-      if (!this.scoreForm) { return; }
       const form = this.scoreForm;
       for (const field in this.formErrors) {
-         // clear previous error message (if any)
-         this.formErrors[field] = '';
-         const control = form.get(field);
-         if (control && control.dirty && !control.valid) {
-            const messages = this.validationMessages[field];
-            for (const key in control.errors) {
-               console.log(control);
-               this.formErrors[field] += messages[key] + ' ';
+         if (field) {
+            this.formErrors[field] = '';
+            const control = form.get(field);
+            if (control && control.dirty && !control.valid) {
+               const messages = this.validationMessages[field];
+               for (const key in control.errors) {
+                  if (key) {
+                     this.formErrors[field] += messages[key] + ' ';
+                  }
+               }
             }
          }
       }
