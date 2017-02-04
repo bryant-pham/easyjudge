@@ -10,6 +10,7 @@ import { AdminComponent } from './admin.component';
 import { EventComponent } from './events/event.component';
 import { EventDialogComponent } from './events/eventdialog/event.dialog';
 import { ViewScoresComponent } from './score/viewscores.component';
+import { AdminGuard } from './guard/admin.guard';
 
 @NgModule({
    imports: [
@@ -27,7 +28,8 @@ import { ViewScoresComponent } from './score/viewscores.component';
       ViewScoresComponent
    ],
    providers: [
-      MdDialog
+      MdDialog,
+      AdminGuard
    ],
    entryComponents: [ EventDialogComponent ]
 })

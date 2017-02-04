@@ -1,6 +1,7 @@
 <md-nav-list>
    <md-list-item *ngFor="let event of events">
       <a md-line [routerLink]="['/admin/scores', event.id]">{{ event.name }}</a>
+      <md-slide-toggle [(ngModel)]=event.active (click)="toggleActive(enable)">Enable</md-slide-toggle>
       <button md-icon-button>
          <md-icon>description</md-icon>
       </button>

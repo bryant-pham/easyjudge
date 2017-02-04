@@ -71,4 +71,11 @@ export class EventService extends AbstractService {
             this.store.dispatch(action);
          });
    }
+
+   public toggleActive(event: Event): void {
+      this.update(event);
+      if (event.active === true) {
+         this.load();
+      }
+   }
 }

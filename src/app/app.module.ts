@@ -46,6 +46,8 @@ import { admin } from './shared/reducer/admin.reducer';
 import { scoresheets } from './shared/reducer/scoresheets.reducer';
 import { AdminModule } from './admin/admin.module';
 import { uriGeneratorFactory } from './factoryfunctions';
+import { AuthenticationService } from './shared/service/authentication.service';
+import { UserGuard } from './shared/guard/user.guard';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -96,7 +98,9 @@ type StoreType = {
       ScoreService,
       UserService,
       EventService,
-      MdSnackBar
+      MdSnackBar,
+      AuthenticationService,
+      UserGuard
   ]
 })
 export class AppModule {

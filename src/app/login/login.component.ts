@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { UserService } from '../shared/service/user.service';
 import { User } from '../shared/datamodel/user';
 import { AbstractComponent } from '../shared/component/abstract.component';
 import { Admin } from '../shared/datamodel/admin';
+import { AuthenticationService } from '../shared/service/authentication.service';
 
 @Component({
    selector: 'login',
@@ -16,32 +16,34 @@ export class LoginComponent extends AbstractComponent implements OnInit {
    public password: string;
    public isAdminLoginMode = false;
 
-   constructor(private userService: UserService, private router: Router) {
+   constructor(private authService: AuthenticationService, private router: Router) {
       super();
    }
 
    public ngOnInit(): void {
-      this.subs.push(this.userService.getCurrentUser()
-         .subscribe((user: User) => {
-            if (user) {
+      this.subs.push(this.authService.isUserLoggedIn()
+         .subscribe((isLoggedIn: boolean) => {
+            if (isLoggedIn) {
                this.router.navigate(['/score']);
             }
          }));
-      this.subs.push(this.userService.getCurrentAdmin()
-         .subscribe((admin: Admin) => {
-            this.router.navigate(['/admin']);
+      this.subs.push(this.authService.isAdminLoggedIn()
+         .subscribe((isLoggedIn: boolean) => {
+            if (isLoggedIn) {
+               this.router.navigate(['/admin']);
+            }
          }));
    }
 
    public login(): void {
       if (!this.isUndefinedOrEmpty(this.username)) {
-         this.userService.login(this.username);
+         this.authService.login(this.username);
       }
    }
 
    public adminLogin(): void {
       if (!this.isUndefinedOrEmpty(this.username) && !this.isUndefinedOrEmpty(this.username)) {
-         this.userService.adminLogin(this.username, this.password);
+         this.authService.adminLogin(this.username, this.password);
       }
    }
 

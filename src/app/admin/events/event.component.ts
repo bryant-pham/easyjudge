@@ -42,4 +42,8 @@ export class EventComponent extends AbstractComponent implements OnInit {
    public deleteEvent(event: Event): void {
       this.eventService.delete(event);
    }
+
+   public toggleActive(event: Event): void {
+      this.eventService.toggleActive(event);
+   }
 }
