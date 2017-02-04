@@ -32,6 +32,7 @@ export class ViewScoresComponent extends AbstractComponent implements OnInit {
       this.scoreMap.forEach((sumScore, projectNumber) => {
          this.scores.push({projectNumber, sumScore});
       });
+      this.scores.sort((a, b) => b.sumScore - a.sumScore);
    }
 
    private populateScoreMap(scores: ScoreSheet[]): void {
