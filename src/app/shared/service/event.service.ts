@@ -73,9 +73,14 @@ export class EventService extends AbstractService {
    }
 
    public toggleActive(event: Event): void {
-      this.update(event);
-      if (event.active === true) {
-         this.load();
-      }
+      let uri = this.uriGenerator.eventWithId(event.id);
+      this.http.put(uri, event)
+         .map((json) => Event.from(json))
+         .subscribe((updatedEvent: Event) => {
+            if (updatedEvent.isActivated()) {
+               this.load();
+            }
+         });
+
    }
 }

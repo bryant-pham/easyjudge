@@ -38,4 +38,8 @@ export class Event {
    public clone(): Event {
       return new Event(this.name, this.criteria, this.organization, this.active, this.id);
    }
+
+   public isActivated(): boolean {
+      return this.active === true;
+   }
 }
