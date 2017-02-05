@@ -9,6 +9,7 @@
       <md-input-container>
          <input md-input placeholder="Criteria {{i+1}} Requirement" [(ngModel)]="criteria.text">
       </md-input-container>
+      <button md-icon-button (click)="deleteCriteriaAtIndex(i)"><i class="material-icons">cancel</i></button>
    </div>
 </div>
 <md-dialog-actions>

@@ -28,4 +28,10 @@ export class EventDialogComponent {
    public addCriteria(): void {
       this.event.criteria.push(Criteria.createEmpty());
    }
+
+   public deleteCriteriaAtIndex(index: number): void {
+      if (this.event.criteria.length > 1) {
+         this.event.criteria.splice(index, 1);
+      }
+   }
 }
