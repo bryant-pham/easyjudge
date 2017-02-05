@@ -18,7 +18,7 @@ describe('UriGenerator', () => {
    it('should generate admin login uri', () => {
       let result = uriGen.adminLogin();
 
-      expect(result).toEqual('http://localhost:8080/api/admin/login');
+      expect(result).toEqual('http://localhost:8080/api/login/admin');
    });
 
    it('should generate event uri', () => {

@@ -36,13 +36,9 @@ export class LoginComponent extends AbstractComponent implements OnInit {
    }
 
    public login(): void {
-      if (!this.isUndefinedOrEmpty(this.username)) {
+      if (this.ableToLoginAsUser()) {
          this.authService.login(this.username);
-      }
-   }
-
-   public adminLogin(): void {
-      if (!this.isUndefinedOrEmpty(this.username) && !this.isUndefinedOrEmpty(this.username)) {
+      } else if (this.ableToLoginAsAdmin()) {
          this.authService.adminLogin(this.username, this.password);
       }
    }
@@ -60,5 +56,15 @@ export class LoginComponent extends AbstractComponent implements OnInit {
 
    private isUndefinedOrEmpty(field: string): boolean {
       return !field || field === '';
+   }
+
+   private ableToLoginAsUser(): boolean {
+      return !this.isUndefinedOrEmpty(this.username) && !this.isAdminLoginMode;
+   }
+
+   private ableToLoginAsAdmin(): boolean {
+      return !this.isUndefinedOrEmpty(this.username) &&
+         !this.isUndefinedOrEmpty(this.password) &&
+         this.isAdminLoginMode;
    }
 }

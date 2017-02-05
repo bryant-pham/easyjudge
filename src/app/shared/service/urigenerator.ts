@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 const SCORE = 'score';
 const LOGIN = 'login';
-const ADMIN_LOGIN = 'admin/login';
+const ADMIN_LOGIN = 'login/admin';
 const EVENT = 'event';
 const EVENT_ID = 'event/:?';
 const ACTIVE_EVENT = 'event/active';
