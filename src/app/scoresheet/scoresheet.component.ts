@@ -9,7 +9,7 @@ import { mdSnackBarConfig } from '../shared/datamodel/snackbarconfig';
 @Component({
    selector: 'score-sheet',
    templateUrl: './scoresheet.html',
-   styleUrls: ['./scoresheet.css']
+   styleUrls: ['./scoresheet.css', '../shared/component/validationstyles.css']
 })
 export class ScoreSheetComponent implements OnInit {
    public scoreSheet: ScoreSheet;
