@@ -4,8 +4,8 @@ import { scoresheets } from './scoresheets.reducer';
 import { event } from './event.reducer';
 
 export const REDUCERS = {
-   user,
-   admin,
-   event,
-   scoresheets
+   user: user,
+   admin: admin,
+   event: event,
+   scoresheets: scoresheets
 };
