@@ -1,7 +1,7 @@
 import { UriGenerator } from './urigenerator';
 
 describe('UriGenerator', () => {
-   let uriGen = new UriGenerator({scheme: 'http', host: 'localhost', port: '8080', context: 'api'});
+   let uriGen = new UriGenerator('http', 'localhost', '8080', 'api');
 
    it('should generate score uri', () => {
       let result = uriGen.score();

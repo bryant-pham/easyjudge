@@ -11,8 +11,8 @@ const ACTIVE_EVENT = 'event/active';
 export class UriGenerator {
    private root: string;
 
-   constructor(root: {scheme: string, host: string, port: string, context: string}) {
-      this.root = `${root.scheme}://${root.host}:${root.port}/${root.context}`;
+   constructor(scheme: string, host: string, port: string, context: string) {
+      this.root = `${scheme}://${host}:${port}/${context}`;
    }
 
    public score(): string {
