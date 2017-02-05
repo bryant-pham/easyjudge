@@ -11,7 +11,7 @@ import { Criteria } from '../../../shared/datamodel/criteria';
    templateUrl: './eventdialog.html',
    styleUrls: ['../../../shared/component/validationstyles.css']
 })
-export class EventDialogComponent implements AfterViewChecked{
+export class EventDialogComponent implements AfterViewChecked {
    public event: Event;
    public title: string;
    public form: NgForm;
@@ -19,18 +19,18 @@ export class EventDialogComponent implements AfterViewChecked{
    @ViewChild('form')
    public currentForm: NgForm;
 
-   private validationMessages = {
-      'name': {
-         'required': 'Name is required.'
-      },
-      'criteria0': {
-         'required': 'Criteria text is required.'
-      }
+   public formErrors = {
+      name: '',
+      criteria0: ''
    };
 
-   private formErrors = {
-      'name': '',
-      'criteria0': ''
+   private validationMessages = {
+      'name': {
+         required: 'Name is required.'
+      },
+      'criteria0': {
+         required: 'Criteria text is required.'
+      }
    };
 
    constructor(private dialogRef: MdDialogRef<EventDialogComponent>,
@@ -62,7 +62,7 @@ export class EventDialogComponent implements AfterViewChecked{
       this.form = this.currentForm;
       if (this.form) {
          this.form.valueChanges
-            .subscribe(data => this.onValueChanged(data));
+            .subscribe((data) => this.onValueChanged(data));
       }
    }
 
@@ -72,13 +72,17 @@ export class EventDialogComponent implements AfterViewChecked{
 
       for (const field in this.formErrors) {
          // clear previous error message (if any)
-         this.formErrors[field] = '';
-         const control = form.get(field);
+         if (field) {
+            this.formErrors[field] = '';
+            const control = form.get(field);
 
-         if (control && control.dirty && !control.valid) {
-            const messages = this.validationMessages[field];
-            for (const key in control.errors) {
-               this.formErrors[field] += messages[key] + ' ';
+            if (control && control.dirty && !control.valid) {
+               const messages = this.validationMessages[field];
+               for (const key in control.errors) {
+                  if (key) {
+                     this.formErrors[field] += messages[key] + ' ';
+                  }
+               }
             }
          }
       }
@@ -91,7 +95,7 @@ export class EventDialogComponent implements AfterViewChecked{
    private addCriteriaValidation(index: number): void {
       this.formErrors[`criteria${index}`] = '';
       this.validationMessages[`criteria${index}`] = {
-         'required': 'Criteria text is required.'
+         required: 'Criteria text is required.'
       };
    }
 

@@ -13,7 +13,8 @@ export class UserGuard implements CanActivate {
    constructor(private authService: AuthenticationService,
                private router: Router) {}
 
-   public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+   public canActivate(route: ActivatedRouteSnapshot,
+                      state: RouterStateSnapshot): Observable<boolean> {
       return this.authService.isUserLoggedIn()
          .switchMap((isLoggedIn: boolean) => {
             if (!isLoggedIn) {
