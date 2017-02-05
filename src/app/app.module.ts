@@ -48,6 +48,7 @@ import { AdminModule } from './admin/admin.module';
 import { uriGeneratorFactory } from './factoryfunctions';
 import { AuthenticationService } from './shared/service/authentication.service';
 import { UserGuard } from './shared/guard/user.guard';
+import { REDUCERS } from './shared/reducer/index';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -80,12 +81,7 @@ type StoreType = {
       FormsModule,
       HttpModule,
       RouterModule.forRoot(ROUTES, { preloadingStrategy: PreloadAllModules }),
-      StoreModule.provideStore({
-         user,
-         event,
-         admin,
-         scoresheets
-      }),
+      StoreModule.provideStore(REDUCERS),
       MaterialModule.forRoot(),
       AdminModule,
       ReactiveFormsModule
