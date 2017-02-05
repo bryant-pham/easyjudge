@@ -1,19 +1,37 @@
-<h1 md-dialog-title>Create an event</h1>
+<h1 md-dialog-title>{{ title }}</h1>
+<form #form="ngForm" (ngSubmit)="save()">
 <div md-dialog-content>
    <div>
       <md-input-container>
-         <input md-input placeholder="Name" [(ngModel)]="event.name">
+         <input md-input
+                placeholder="Name"
+                [(ngModel)]="event.name"
+                required
+                name="name">
       </md-input-container>
+      <div *ngIf="formErrors.name"
+           class="validation">
+         {{ formErrors.name }}
+      </div>
    </div>
    <div *ngFor="let criteria of event.criteria; let i = index">
       <md-input-container>
-         <input md-input placeholder="Criteria {{i+1}} Requirement" [(ngModel)]="criteria.text">
+         <input md-input
+                placeholder="Criteria {{i+1}} Requirement"
+                [(ngModel)]="criteria.text"
+                required
+                name="criteria{{i}}">
       </md-input-container>
       <button md-icon-button (click)="deleteCriteriaAtIndex(i)"><i class="material-icons">cancel</i></button>
+      <div *ngIf="getErrorForCriteria(i)"
+           class="validation">
+         {{ getErrorForCriteria(i) }}
+      </div>
    </div>
 </div>
 <md-dialog-actions>
-   <button md-button (click)="addCriteria()">Add Criteria</button>
-   <button md-button (click)="close()">Close</button>
-   <button md-button (click)="save()">Save</button>
+   <button md-button (click)="addCriteria()" type="button">Add Criteria</button>
+   <button md-button md-dialog-close type="button">Close</button>
+   <button md-button (click)="save()" type="button" [disabled]="!form.valid">Save</button>
 </md-dialog-actions>
+</form>

@@ -22,4 +22,8 @@ export class Criteria {
    public clear(): void {
       this.score = 1;
    }
+
+   public clone(): Criteria {
+      return new Criteria(this.text, this.score);
+   }
 }

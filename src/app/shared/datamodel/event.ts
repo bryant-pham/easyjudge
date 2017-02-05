@@ -17,7 +17,7 @@ export class Event {
    }
 
    public static createEmpty(): Event {
-      return new Event(null, [], null, false);
+      return new Event(null, [Criteria.createEmpty()], null, false);
    }
 
    public id: string;
@@ -36,7 +36,9 @@ export class Event {
    }
 
    public clone(): Event {
-      return new Event(this.name, this.criteria, this.organization, this.active, this.id);
+      let cloneCriteria = [];
+      this.criteria.forEach((criteria: Criteria) => cloneCriteria.push(criteria.clone()));
+      return new Event(this.name, cloneCriteria, this.organization, this.active, this.id);
    }
 
    public isActivated(): boolean {

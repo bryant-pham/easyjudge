@@ -28,7 +28,6 @@ export class EventComponent extends AbstractComponent implements OnInit {
       let dialogRef = this.dialog.open(EventDialogComponent, {disableClose: true});
       let component = dialogRef.componentInstance;
       component.event = Event.createEmpty();
-      component.addCriteria();
       component.title = 'Create an event';
    }
 
